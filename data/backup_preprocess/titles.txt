@@ -1,0 +1,334 @@
+,title
+0,Accounting
+1,Commerce
+2,Finance
+3,Industrial relations
+4,Management
+5,Manufacturing
+6,Marketing
+7,Research and development
+8,Advertising
+9,Bank
+10,Barter
+11,Big business
+12,Business acumen
+13,Business broker
+14,Business ethics
+15,Business hours
+16,Business intelligence
+17,Mediation
+18,Business model
+19,Business plan
+20,Business process modeling
+21,Business reference model
+22,Business rule
+23,Business school
+24,Business travel
+25,Capitalism
+26,Change management analyst
+27,Commercial law
+28,Company
+29,Competition
+30,Competitive advantage
+31,Cooperative
+32,Core competency
+33,Corporate law
+34,Corporation
+35,Cost overrun
+36,Debenture
+37,Economic democracy
+38,Economics
+39,Electronic business
+40,E-commerce
+41,Entrepreneurship
+42,Stock trader
+43,Financial economics
+44,Franchising
+45,State ownership
+46,Growth platforms
+47,Human resources
+48,Index of accounting articles
+49,Industry
+50,Insurance
+51,Intellectual property
+52,Interim management
+53,International trade
+54,Investment
+55,Investment management
+56,Unemployment
+57,Labour economics
+58,Limited liability
+59,The World's Billionaires
+60,List of business theorists
+61,List of economists
+62,Absolute advantage
+63,List of oldest companies
+64,Bretton Woods Conference
+65,Comparative advantage
+66,Customs broker
+67,Management
+68,Management information system
+69,Management fad
+70,Manufacturing
+71,Market structure
+72,Marketing plan
+73,Mass media
+74,Middle management
+75,Money
+76,Organizational studies
+77,Outline of business management
+78,Outline of commercial law
+79,Outline of economics
+80,Outline of finance
+81,Outline of marketing
+82,Outline of production
+83,Outline of project management
+84,Partnership
+85,Free trade
+86,Profit (economics)
+87,Project management
+88,Real estate
+89,Renewable energy
+90,Benefit shortfall
+91,Senior management
+92,Small business
+93,Social responsibility
+94,Welfare
+95,Strategic management
+96,Strategic planning
+97,Strategy dynamics
+98,Tax
+99,The Design of Business
+100,Theory of constraints
+101,Trade name
+102,Value migration
+103,Computer science
+104,Theory of computation
+105,Computational science
+106,Metacomputing
+107,Autonomic computing
+108,Computer
+109,Computer hardware
+110,History of computing hardware
+111,Processor design
+112,Computer network
+113,Computer performance by orders of magnitude
+114,Software engineering
+115,Computer programming
+116,Computation
+117,Software patent
+118,Firmware
+119,System software
+120,Device driver
+121,Operating system
+122,Public utility
+123,Database
+124,Geographic information system
+125,Spreadsheet
+126,Word processor
+127,Programming language
+128,Language interpretation
+129,Compiler
+130,Assembler
+131,Speech recognition
+132,Speech synthesis
+133,Biological engineering
+134,Agricultural engineering
+135,Bionics
+136,Genetic engineering
+137,Biomedical engineering
+138,Metabolic engineering
+139,Neural engineering
+140,Tissue engineering
+141,Civil engineering
+142,Environmental engineering
+143,Architectural engineering
+144,Construction engineering
+145,Geotechnical engineering
+146,Transportation engineering
+147,Hydraulic engineering
+148,Structural engineering
+149,Architectonics
+150,Materials science
+151,Molecular engineering
+152,Process engineering
+153,Broadcast engineering
+154,Power engineering
+155,Telecommunications engineering
+156,Electronic
+157,Optical engineering
+158,Mechatronics
+159,Electromechanics
+160,Industrial engineering
+161,Engineering psychology
+162,Facilities engineering
+163,Home automation
+164,Laboratory automation
+165,Integrated library system
+166,Broadcast automation
+167,Mix automation
+168,Building automation
+169,Automated attendant
+170,Automated guided vehicle
+171,Smart highway
+172,Automated pool cleaner
+173,Automated reasoning
+174,Automated teller machine
+175,Paint robot
+176,Pop music automation
+177,Robotic lawn mower
+178,Telephone switchboard
+179,Vending machine
+180,Energy storage
+181,Electricity generation
+182,Electricity retailing
+183,Grid energy storage
+184,Liquefied natural gas
+185,Wireless power transfer
+186,Power station
+187,Power supply
+188,Power transmission
+189,Underground power station
+190,Car
+191,Auto rickshaw
+192,Bus
+193,Midibus
+194,Minibus
+195,School bus
+196,Trolleybus
+197,Minivan
+198,Motorcycle
+199,Share taxi
+200,Truck
+201,Trucking industry in the United States
+202,Unimog
+203,Van
+204,Sports car
+205,All-terrain vehicle
+206,Heavy equipment
+207,Hovercraft
+208,Iceboat
+209,Snowmobile
+210,Sport utility vehicle
+211,Tank
+212,Traction engine
+213,Tractor
+214,Accessibility
+215,High-speed rail
+216,Locomotive
+217,Monorail
+218,Mountain railway
+219,Cable car (railway)
+220,Funicular
+221,Rack railway
+222,Multiple unit
+223,Diesel multiple unit
+224,Electric multiple unit
+225,People mover
+226,Personal rapid transit
+227,Track (rail transport)
+228,Rail transport by country
+229,Rapid transit
+230,Train
+231,Tram
+232,Light rail
+233,Access control
+234,Authentication
+235,Multi-factor authentication
+236,Authorization
+237,Firewalls and Internet Security
+238,Firewall
+239,Firewall pinhole
+240,Hole punching (networking)
+241,TCP hole punching
+242,UDP hole punching
+243,ICMP hole punching
+244,Next-generation firewall
+245,Virtual firewall
+246,Stateful firewall
+247,Context-based access control
+248,Dual-homed
+249,IPFilter
+250,ZoneAlarm
+251,Debian
+252,Intrusion detection system
+253,Mobile secure gateway
+254,Antivirus software
+255,Secure coding
+256,Secure by design
+257,Secure operating system
+258,Advanced persistent threat
+259,Backdoor (computing)
+260,Cybercrime
+261,Computer virus
+262,Denial-of-service attack
+263,Eavesdropping
+264,Exploit (computer security)
+265,Keystroke logging
+266,Logic bomb
+267,Malware
+268,Payload
+269,Phishing
+270,Ransomware
+271,Rootkit
+272,Data scraping
+273,Spyware
+274,Trojan
+275,Vulnerability (computing)
+276,Web shell
+277,Web application security
+278,Computer worm
+279,SQL injection
+280,Computer access control
+281,Application security
+282,Antivirus software
+283,Secure coding
+284,Secure by default
+285,Misuse case
+286,Multi-factor authentication
+287,Authorization
+288,Data-centric security
+289,Encryption
+290,Firewall
+291,Intrusion detection system
+292,Mobile secure gateway
+293,Runtime application self-protection
+294,Inference attack
+295,Information assurance
+296,Information assurance vulnerability alert
+297,Information Exchange Gateway
+298,Information security
+299,Information Security Automation Program
+300,Information security indicators
+301,Information security operations center
+302,Information sensitivity
+303,INOC-DBA
+304,Insider threat
+305,Insider threat management
+306,Intel Management Engine
+307,Inter-protocol exploitation
+308,Internet leak
+309,Internet Security Awareness Training
+310,Intrusion detection system
+311,Intrusion detection system evasion techniques
+312,Intrusion tolerance
+313,IT baseline protection
+314,IT risk
+315,IT risk management
+316,Active defense
+317,Adversarial machine learning
+318,Ambient authority
+319,AMD Platform Security Processor
+320,American Innovation and Competitiveness Act
+321,Anderson's rule (computer science)
+322,Anomaly Detection at Multiple Scales
+323,AppArmor Mobile
+324,Application portfolio attack surface
+325,Application security
+326,Aptum Technologies
+327,Army Chief Information Officer/G-6
+328,Asset Disposal and Information Security Alliance
+329,Aurora Generator Test
+330,Automotive security
+331,Cyber security awareness
+332,Cryptography
