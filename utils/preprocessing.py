@@ -1,10 +1,34 @@
-import re
-import string
 from bs4 import BeautifulSoup, Tag
-import contractions
-import unicodedata
+from tqdm import tqdm, tqdm_pandas
+from nltk import word_tokenize, sent_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import LancasterStemmer, WordNetLemmatizer
 
+import re, string, unicodedata, contractions
+import nltk
 
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+tqdm_pandas(tqdm())
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+# =======================================================================================================================
+#                                           TEXT DATA PREPROCESSING
+# This file includes all the utility functions used for data preprocessing for the specific task of clustering and
+# classifying a dataset of wikipedia articles.
+# Text data preprocessing consist of 3 major tasks:
+#   - Noise Removal
+#   - Normalization
+#   - Tokenisation & Segmentation
+# =======================================================================================================================
+
+# =======================================================================================================================
+
+# =======================================================================================================================
+#                                               NOISE REMOVAL
+# =======================================================================================================================
 def remove_html_tags(text):
     """Remove html tags from a string text.
     We want to get rid of all the math formulas (tags:math, semantics, annotation).
@@ -19,10 +43,11 @@ def remove_html_tags(text):
     """
     soup = BeautifulSoup(text)
 
-    tags_to_be_removed = ['semantics', 'math', 'annotation', 'cite', 'h2', 'h3']
+    tags_to_be_removed = ['semantics', 'math',
+                          'annotation', 'cite', 'h2', 'h3']
     for tag_ in tags_to_be_removed:
-            for tag in soup.find_all(tag_):
-                tag.decompose()
+        for tag in soup.find_all(tag_):
+            tag.decompose()
 
     ids = ['See_also', 'References', 'Footnotes',
            'Bibliography', 'Further_reading', 'External_links']
@@ -33,8 +58,51 @@ def remove_html_tags(text):
 
     return soup.get_text()
 
+# =======================================================================================================================
+def expand_contractions(text):
+    """Expands contractions of a text string with the library contractions.
+
+    Args:
+        text (string): the string text to be decontracted.
+
+    Returns:
+        string: The text decontracted.
+    """
+    return contractions.fix(text)
+
+# =======================================================================================================================
+def remove_noise(text):
+    """ Removes the overall noise from an html text.
+
+    Args:
+        text (string): an html markup string with contractions.
+
+    Returns:
+        string: plain-text decontracted.
+    """
+    text = remove_html_tags(text)
+    text = expand_contractions(text)
+    return text
+
+# =======================================================================================================================
+def remove_noise_from_df(df):
+    """Removes HTML and contractions noise from a dataframe.
+
+    Args:
+        df (pandas df): a dataframe with noisy content.
+
+    Returns:
+        pandas df: a clean dataframe.
+    """
+    return df.progress_apply(remove_noise)
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+# =======================================================================================================================
+#                                               NORMALISATION
+# =======================================================================================================================
 def remove_accented_chars(text):
-    """Removes accented characters from a string.
+    """Removes accented characters from a string as we are dealing with engilsh words.
 
     Args:
         text (string): the string text containing accented characters. 
@@ -46,17 +114,7 @@ def remove_accented_chars(text):
         'ascii', 'ignore').decode('utf-8', 'ignore')
     return new_text
 
-def replace_contractions(text):
-    """Removes contractions from a tet string.
-
-    Args:
-        text (string): the string text to be decontracted.
-
-    Returns:
-        string: The text decontracted.
-    """
-    return contractions.fix(text)
-
+# =======================================================================================================================
 def remove_punctuation(text):
     """Removes punctuation from a string
 
@@ -69,6 +127,7 @@ def remove_punctuation(text):
     s = ''.join([i for i in text if i not in frozenset(string.punctuation)])
     return s
 
+# =======================================================================================================================
 def remove_numbers(text):
     """Remove numbers from a string.
 
@@ -78,13 +137,12 @@ def remove_numbers(text):
     Returns:
         string: The text cleaned from numbers.
     """
-    text = text.replace('"', '')
-    text = text.replace('\d+,', ' ')
     clean = re.compile('\d+')
     return re.sub(clean, '', text)
 
+# =======================================================================================================================
 def remove_special_characters(text):
-    """Removes special character.
+    """Removes special character, leaves only alphbetic characters.
 
     Args:
         text (string): a text with special characters.
@@ -95,29 +153,82 @@ def remove_special_characters(text):
     pat = r'[^a-zA-z\s]'
     return re.sub(pat, '', text)
 
-def remove_noise(text):
-    """Removes all the noise from a text.
+# =======================================================================================================================
+def remove_stopwords(text):
+    """Removes stop words from text
 
     Args:
-        text (string): text with noise (numbers, punctuation, html tags, ...)
+        text (string): text with stop words.
 
     Returns:
-        string: a text that contains only words.
+        [type]: text without stop words.
     """
-    text = remove_html_tags(text)
-    # text = remove_accented_chars(text)
+    words = text.split()
+    new_words = []
+    for word in words:
+        if word not in stopwords.words("english"):
+            new_words.append(word)
+    return " ".join(new_words)
+
+# =======================================================================================================================
+def stem_words(text):
+    """ Stem words in text.
+
+    Args:
+        text (string): The content to be stemmed.
+
+    Returns:
+        string: a standardize text.
+    """
+    stemmer = nltk.porter.PorterStemmer()
+    text=' '.join([stemmer.stem(word) for word in text.split()])
+    return text
+
+# =======================================================================================================================
+def lemmatize_verbs(text):
+    """Lemmatize verbs of text.
+
+    Args:
+        text (string): The content to be lemmatised.
+    Returns:
+        string: a standardize text.
+    """
+    lemmatizer = WordNetLemmatizer()
+    text = ' '.join([lemmatizer.lemmatize(word, pos='v')
+                     for word in text.split()])
+    return text
+
+# =======================================================================================================================
+def normalize_text(text):
+    """Normalization pipeline of a given text.
+
+    Args:
+        text (string)
+
+    Returns:
+        string: standardized text.
+    """
+    text = text.lower()
+    text = text.strip()
+    text = remove_accented_chars(text)
     text = remove_punctuation(text)
     text = remove_numbers(text)
     text = remove_special_characters(text)
+    text = remove_stopwords(text)
+    text = stem_words(text)
+    text = lemmatize_verbs(text)
     return text
 
-def remove_noise_from_df(df):
-    """Removes noise from a dataframe.
+# =======================================================================================================================
+def normalize_df(df):
+    """Normalize the content of a dataframe.
 
     Args:
-        df (pandas df): a dataframe with noisy content.
+        df (pandas df): the dataframe to be normalized.
 
     Returns:
-        pandas df: a clean dataframe.
+        pandas df: the standardized df.
     """
-    return df.apply(remove_noise).apply(str.strip).apply(str.lower)
+    return df.progress_apply(normalize_text)
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
