@@ -1,4 +1,5 @@
 from clustering.clustering_pipeline import ClusteringPipeline
+import matplotlib.pyplot as plt 
 
 if __name__ == '__main__':
     import argparse
@@ -13,10 +14,25 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.backup:
         print("Backup Mode for repeatability check!")
+        print("Load Processed data...")
         clust_pipeline.load_processed_data()
+    
     elif args.experiment:
         print("Experiment Mode")
+        print("Load Raw data...")
         clust_pipeline.load_raw_data()
-        clust_pipeline.preprcessing()
+        print("Launch data preprocessing...")
+        clust_pipeline.preprocessing()
         
-    clust_pipeline.clustering(constraint=10)
+    print("Launch Graph Creation and Clustering...")
+    clusters = clust_pipeline.clustering(constraint=27)
+
+    print("Plot results...")
+    fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+    for i, c in enumerate(clusters):
+        topics_count = c.get_topics_count()
+        axs[i//2, i % 2].bar(topics_count.keys(),
+                            topics_count.values(), width=.3, color='g')
+        axs[i//2, i % 2].set_title(str(c))
+    plt.savefig('data/images/quality_eval.png')
+    plt.show()

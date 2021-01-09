@@ -16,19 +16,20 @@ class ClusteringPipeline(object):
             "data/dataset_business_technology_cybersecurity.pickle")
         self.wiki_df = pd.DataFrame(self.wiki_df)
     
-    def preprcessing(self):
-        self.wiki_df["content"] = remove_noise_from_df(wiki_df["content"])
-        self.wiki_df["content"] = normalize_df(wiki_df["content"])
-        self.wiki_df["content"] = wiki_df["content"].progress_apply(
+    def preprocessing(self):
+        self.wiki_df["content"] = remove_noise_from_df(self.wiki_df["content"])
+        self.wiki_df["content"] = normalize_df(self.wiki_df["content"])
+        self.wiki_df["content"] = self.wiki_df["content"].progress_apply(
             nltk.word_tokenize)
-        self.wiki_pages = self.wiki_df.to_dict(order="records")
+        self.wiki_pages = self.wiki_df.to_dict(orient="records")
 
     def load_processed_data(self):
         self.wiki_df = pd.read_csv("data/backup_preprocess/content_tokenized.txt")
-        self.wiki_pages = self.pd.to_dict(order="records")
+        self.wiki_pages = self.wiki_df.to_dict(orient="records")
 
     def clustering(self, constraint):
         self.wiki_graph.build_graph(self.wiki_pages, constraint=constraint)
         self.wiki_clusters = self.wiki_graph.get_wiki_clusters()
+        return self.wiki_clusters
 
         
