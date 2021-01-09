@@ -51,7 +51,7 @@ class WikiNode(object):
         self.wiki_neighbors = {}
 
     def __str__(self):
-        return str(self.wiki_page.id) + ":" + str(self.wiki_page.title) + "about" + str(self.wiki_page.topic) + "adjacent:" + str([x.get_id() for x in self.wiki_neighbors])
+        return str(self.wiki_page.id) + ": " + str(self.wiki_page.title) + " about " + str(self.wiki_page.topic) + " adjacent:" + str([x.get_id() for x in self.wiki_neighbors])
 
     def add_wiki_neighbor(self, wiki_neighbor, constraint=None):
         tokens_in_common = len(
@@ -159,9 +159,9 @@ class WikiGraph(object):
         
         visited = set()
         components = []
-        for wiki_node in tqdm(self):
-            if wiki_node.wiki_page.id not in visited:
-                visited.add(wiki_node.wiki_page.id)
+        for wiki_node in self:
+            if wiki_node not in visited:
+                visited.add(wiki_node)
                 stack = [wiki_node]
                 wiki_cluster = WikiCluster()
                 while stack:
@@ -213,7 +213,7 @@ class WikiCluster(object):
         return iter(self.wiki_nodes)
 
     def __str__(self):
-        return "Cluster " + str(self.title)
+        return "Cluster " + str(self.title) + " nb of pages: " + str(len(self.wiki_nodes))
 
     def add_wiki_node(self, wiki_node):
         self.wiki_nodes.append(wiki_node)
