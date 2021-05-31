@@ -1,5 +1,4 @@
-# Feedly Python Coding and ML Challenge 
-## 2021 End Of study Internship 
+# Wikipedia Document clustering
 
 ### Author
 [Kenza Bouzid](https://github.com/KenzaB27)
