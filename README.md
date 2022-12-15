@@ -1,8 +1,5 @@
 # Wikipedia Document clustering
 
-### Author
-[Kenza Bouzid](https://github.com/KenzaB27)
-
 ## Project setup instructions
 
 ### Installation
